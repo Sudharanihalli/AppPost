@@ -1,0 +1,2 @@
+class AppPost < ApplicationRecord
+end
