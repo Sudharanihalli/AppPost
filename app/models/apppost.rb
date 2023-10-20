@@ -1,2 +1,0 @@
-class Apppost < ApplicationRecord
-end
