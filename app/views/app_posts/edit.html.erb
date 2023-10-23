@@ -1,5 +1,5 @@
 <h1>Edit blog post</h1>
-
 <%= render partial: "form", locals: {app_post: @app_post} %>
 
 <%= button_to "Delete",  @app_post,  method: :delete, data: {turbo_confirm: "Are you sure?"}  %> 
+ 
