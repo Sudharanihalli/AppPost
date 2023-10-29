@@ -8,3 +8,8 @@ class CreateAppPosts < ActiveRecord::Migration[7.1]
     end
   end
 end
+
+
+
+
+
