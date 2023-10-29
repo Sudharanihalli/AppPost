@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.1].define(version: 2023_10_28_165302) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
+=======
+ActiveRecord::Schema[7.1].define(version: 2023_10_23_071923) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "app_posts", force: :cascade do |t|
+    t.string "title"
+>>>>>>> master
     t.text "body"
     t.string "record_type", null: false
     t.bigint "record_id", null: false
