@@ -13,3 +13,8 @@ user.update!(
     password: "password",
     password_confirmation: "password"
 )
+
+100.times do |i|
+    app_post = AppPost.where(title: "App Post #{i}").first_or_initialize
+    app_post.update(content: "Hello world", published_at: Time.current)
+end

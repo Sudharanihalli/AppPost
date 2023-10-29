@@ -1,5 +1,6 @@
 <h1>Show</h1>
 <%= link_to "Edit",  edit_app_post_path(@app_post) if user_signed_in? %>
 
+<%= image_tag @app_post.cover_image if @app_post.cover_image.present? %>
 <h2><%=  @app_post.title %></h2>
-<%=  @app_post.body %>
+<%=  @app_post.content %>

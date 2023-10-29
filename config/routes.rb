@@ -6,8 +6,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   
-  resources :app_posts
-
+  resources :app_posts do
+    resources :cover_image, only: [:destroy], module: :app_posts
+  end
 
   # get "/app_posts", to: "app_posts#index", as: :app_posts
   # get "/app_posts/new", to: "app_posts#new", as: :new_app_post
