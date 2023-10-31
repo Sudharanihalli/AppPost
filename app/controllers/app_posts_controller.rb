@@ -12,6 +12,10 @@ class AppPostsController < ApplicationController
     
     def show
         @app_post = AppPost.published.find(params[:id])
+        respond_to do |format|
+            format.html 
+            format.js  
+          end
         #@app_post = AppPost.find(params[:id])
         # rescue ActiveRecords::RecordNotFound
         # redirect_to root_path

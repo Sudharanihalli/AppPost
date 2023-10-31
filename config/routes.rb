@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 
   # root "app_posts#index"
 
-  devise_for :users
+  devise_for :users 
   
   resources :app_posts do
-    resources :cover_image, only: [:destroy], module: :app_posts
+    resource :cover_image, only: [:destroy], module: :app_posts
   end
 
   # get "/app_posts", to: "app_posts#index", as: :app_posts
