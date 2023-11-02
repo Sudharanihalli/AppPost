@@ -11,12 +11,7 @@ class AppPostsController < ApplicationController
     
     
     def show
-        @app_post = AppPost.published.find(params[:id])
-        respond_to do |format|
-            format.html 
-            format.js  
-          end
-        #@app_post = AppPost.find(params[:id])
+        # @app_post = AppPost.find(params[:id])
         # rescue ActiveRecords::RecordNotFound
         # redirect_to root_path
     end
@@ -50,8 +45,20 @@ end
 def destroy
     # @app_post = AppPost.find(params[:id])
     @app_post.destroy
-    redirect_to root_path
+    # redirect_to root_path
+    respond_to do |format|
+    format.html { redirect_to root_path }
+        format.js
+      end
 end
+
+def comment
+    @app_post = AppPost.find(params[:id])    
+    respond_to do |format|
+      format.js
+    end
+end
+  
 
 private
 
@@ -62,7 +69,6 @@ end
 
 def set_app_post
     @app_post = user_signed_in? ? AppPost.find(params[:id]) : AppPost.published.find(params[:id])
-    rescue ActiveRecords::RecordNotFound
+rescue ActiveRecord::RecordNotFound
     redirect_to root_path
-  
 end

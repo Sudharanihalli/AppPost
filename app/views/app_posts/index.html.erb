@@ -6,9 +6,11 @@
 
 <h2><%= link_to app_post.title, app_post  %></h2>
 <% if app_post.draft? %>
-<div class="p-2 rounded bg-red-100 text-gray-900">Draft</div>
-<% elsif app_post.schedule? %>
-<div class="p-2 rounded bg-blue-100 text-blue-900">Schedule</div>
+    <div class="p-2 rounded bg-red-100 text-gray-900">Draft</div>
+    <% elsif app_post.schedule? %>
+    <div class="p-2 rounded bg-blue-100 text-blue-900">Schedule</div>
+    <% else app_post.published? %>
+    <div class="p-2 rounded bg-blue-100 text-blue-900">Published</div>
 <% end %>
 <%= app_post.content %>
 </div>
@@ -21,3 +23,4 @@
 <%== pagy_nav(@pagy) %>
 </div>
 <% end %>
+

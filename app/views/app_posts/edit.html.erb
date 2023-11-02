@@ -1,17 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+ <style>
+      body {
+        background-color: lightyellow; 
+      }
+    </style>
+  </head>
+  <body class="prose mx-auto">
 <h1>Edit App post</h1>
 <%= render partial: "form", locals: { app_post: @app_post } %>
 
 <%= link_to 'Back', app_posts_path %>
 <div class="delete-button-container" id="delete-button">
-  <%= button_to "Delete", @app_post, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this post?" }, class: "delete-button", id: "delete-post-button" %>
+<%= button_to "Delete", app_post_path(@app_post), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this post?" }, class: "delete-button", id: "delete-post-button", remote: true %>
 </div>
 
+</body>
+</html>
+
 <script>
-  document.getElementById('delete-post-button').addEventListener('click', function() {
-    Swal.fire(
-      'Good job!',
-      'You clicked the button!',
-      'success'
-    );
+  $(document).ready(function() {
+    $('#delete-post-button').click(function() {
+      $.ajax({
+        url: '<%= app_post_path(@app_post) %>',
+        type: 'DELETE',
+        dataType: 'script',
+        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+        success: function(response) {
+          alert("successfull")
+          windows.location.href = windows.location.href;
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          alert('Error during deletion.');
+        }
+      });
+    });
   });
 </script>

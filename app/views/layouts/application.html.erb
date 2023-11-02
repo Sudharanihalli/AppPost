@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", media: "all",  "data-turbo-track": "reload" %>
 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -22,31 +23,10 @@
 <div>
   <% if user_signed_in? %>
   <%= link_to "New app post", new_app_post_path %>
-  <%# <%= link_to "profile", edit_user_registration_path %>
 <%= button_to "Log out", destroy_user_session_path, method: :delete, id: "logout-button", class: "logout-button" %>
-  <%# <% else %> 
-  <%# <%= link_to "Login", new_user_session_path %>
-  <%# <%= link_to "Sign Up", new_user_registration_path %>
 <% end %>
 </div>
     <%= yield %>
-
-    <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const logoutButton = document.querySelector("#logout-button");
-
-    if (logoutButton) {
-      logoutButton.addEventListener("click", function() {
-        this.classList.add("button-animation");
-
-        // Remove the animation class after the animation completes
-        setTimeout(() => {
-          this.classList.remove("button-animation");
-        }, 300); // Adjust the time to match the animation duration
-      });
-    }
-  });
-</script>
 
   </body>
 </html>

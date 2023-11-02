@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   
   resources :app_posts do
     resource :cover_image, only: [:destroy], module: :app_posts
+    member do
+      patch :comment
+    end
   end
-
   # get "/app_posts", to: "app_posts#index", as: :app_posts
   # get "/app_posts/new", to: "app_posts#new", as: :new_app_post
   # get "/app_posts/:id", to: "app_posts#show", as: :app_post
@@ -18,9 +20,7 @@ Rails.application.routes.draw do
   # get "/app_posts/:id/edit", to: "app_posts#edit", as: :edit_app_post
   # post "/app_posts",  to: "app_posts#create"
 
-
   # Defines the root path route ("/")
-   root "app_posts#index"
-
-end
+  root "app_posts#index"
+  end
 

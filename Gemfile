@@ -75,7 +75,5 @@ gem "pagy", "~> 6.1"
 
 gem "font-awesome-rails"
 
-gem "webpacker", '~> 5.0'
-
-
+gem "jquery-rails"
 

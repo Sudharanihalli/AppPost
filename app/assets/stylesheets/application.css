@@ -16,30 +16,35 @@
 
  @import 'font-awesome'
 
- /* Add this CSS to your stylesheet */
+ *= require 'sweetalert2'
+
+ *= require bootstrap
+
+
+ 
 .button-animation {
     animation: scaleButton 0.3s ease-in-out;
   }
   
-  /* Add this CSS to your stylesheet */
+  
   .logout-button {
-    background-color: darkgray;  /* Set the background color to dark gray */
-    color: white;               /* Set the text color to white */
-    border: 1px solid black;    /* Add a black border around the button */
-    padding: 5px 10px;         /* Add padding to control button size */
-    border-radius: 5px;         /* Add rounded corners for a rectangular shape */
-    text-decoration: none;      /* Remove underlines from links (optional) */
-    display: inline-block;      /* Display the button as an inline block */
-    margin: 5px;                /* Add margin for spacing (optional) */
-    cursor: pointer;            /* Change cursor to pointer on hover (optional) */
-    transition: background-color 0.3s, color 0.3s; /* Add a smooth transition effect */
+    background-color: darkgray;  
+    color: white;               
+    border: 1px solid black;    
+    padding: 5px 10px;         
+    border-radius: 5px;        
+    text-decoration: none;      
+    display: inline-block;      
+    margin: 5px;                
+    cursor: pointer;            
+    transition: background-color 0.3s, color 0.3s; 
   }
   
   .logout-button:hover {
-    background-color: gray; /* Change background color on hover */
+    background-color: gray; 
   }
   
-  /* app/assets/stylesheets/application.css */
+  
   .edit-button {
     background-color: gray;
     color: white;
@@ -51,21 +56,20 @@
     display: inline-block;
   }
   
-  /* app/assets/stylesheets/app.css */
   
   .delete-button-container {
     display: inline-block;
-    background-color: #ccc; /* Gray background color */
-    padding: 10px 20px; /* Adjust padding to your preference */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Change cursor on hover */
-    color: #fff; /* Text color for the button */
-    text-align: center; /* Center-align text */
+    background-color: #ccc; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    text-align: center; 
   }
   
   .delete-button-container:hover {
-    background-color: #999; /* Darker gray on hover */
+    background-color: #999;
   }
+  
   
   
   
