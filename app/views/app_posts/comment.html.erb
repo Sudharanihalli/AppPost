@@ -1,0 +1,29 @@
+ <%= comment.content %> 
+<% comment.replies.each do |reply| %>
+  <div class="nested-comment">
+    <%= render 'comments/comment', comment: reply %>
+  </div>
+<% end %>
+
+<%= render 'app_posts/comment', comment: @comment %>
+
+
+
+<%# <script>
+  $(document).ready(function() {
+    $('#load-comment').click(function() {
+      $.ajax({
+        url: '<%= comment_app_post_path(@app_post) %>',
+        <%# type: 'GET', // Use GET to retrieve comments
+        dataType: 'script',
+        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+        success: function(response) {
+          // Comment data should be loaded and rendered in the response
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          alert('Error loading comment.');
+        }
+      });
+    });
+  });
+</script> %> 

@@ -1,51 +1,59 @@
 <!DOCTYPE html>
 <html>
-  <head>
- <style>
-      body {
-        background-color: lightblue; 
-      }
-    </style>
-  </head>
-  <body class="prose mx-auto">
-<h1>Show</h1>
-<% if user_signed_in? %>
-  <%= button_to "Edit", edit_app_post_path(@app_post), method: :get, class: "edit-button", remote: true %>
-<% end %>
+<head>
+  <style>
+    body {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body class="prose mx-auto">
+  <h1>Show</h1>
+  <% if user_signed_in? %>
+    <%= button_to edit_app_post_path(@app_post), method: :get, class: "edit-button", remote: true do %>
+      <span class="fas fa-spinner fa-spin" style="display: none;"></span>
+      Edit
+    <% end %>
+  <% end %>
+  <% if @app_post.cover_image.present? %>
+    <%= image_tag @app_post.cover_image %>
+  <% end %>
+  <h2><%= @app_post.title %></h2>
+  <%= @app_post.content %>
+  <p>
+    <strong>Published At:</strong>
+    <%= @app_post.published_at %>
+  </p>
+ 
+  <%= button_to  app_posts_path, method: :get, class: "back-button", remote: true do %>
+  <span class="fas fa-spinner fa-spin" style="display: none;"></span>
+      Back
+    <% end %>
 
-<% if @app_post.cover_image.present? %>
-  <%= image_tag @app_post.cover_image %>
-<% end %>
+    <%# <div id="comment">
+  <% @comments.where(parent_comment_id: nil).each do |comment| %>
+    <%# <%= render 'comments/comment', comment: comment %>
+  <%# <% end %> 
+<%# </div> %>
 
-<h2><%= @app_post.title %></h2>
-<%= @app_post.content %>
+<%# <%= render 'comments/form', comment: Comment.new, app_post: @app_post %> 
 
-<p>
-  <strong>Published At:</strong>
-  <%= @app_post.published_at %>
-</p>
+<%# <button id="load-comment">Load Comment</button> %>
+ 
 
-<p>
-  <strong>Comments:</strong>
-  <div>
-    <button id="comment">loading</button>
-  </div>
-</p>
-<%= link_to 'Back', app_posts_path %>
 </body>
 </html>
 
-
-<script>
+<%# <script>
   $(document).ready(function() {
     $('#comment').click(function() {
       $.ajax({
-        url: '<%= comment_app_post_path(@app_post) %>', 
-        type: 'PATCH', 
-        dataType: 'script', 
-         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+        url: '<%= comment_app_post_path(@app_post) %>',
+        <%# type: 'PATCH',
+        dataType: 'script',
+        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
         success: function(response) {
-          alert("successfull")
+          alert("successful");
           window.location.href = window.location.href;
         },
         error: function(xhr, textStatus, errorThrown) {
@@ -53,5 +61,57 @@
         }
       });
     });
+  });
+</script> %> 
+
+<script>
+  $(document).on('click', '.edit-button', function() {
+    var $button = $(this);
+    if (!$button.hasClass('disabled')) {
+      $button.find('.fa-spinner').show();
+      $button.addClass('animate-edit-button');
+      $.ajax({
+        url: '<%= edit_app_post_path(@app_post) %>',
+        type: 'GET',
+        dataType: 'script',
+        success: function(response) {   
+        },
+        error: function(xhr, textStatus, errorThrown) {
+        },
+        complete: function() {
+          setTimeout(function() {
+            $button.removeClass('animate-edit-button');
+            $button.removeClass('disabled');
+            $button.find('.fa-spinner').hide();
+          }, 3000); 
+        }
+      });
+    }
+  });
+</script>
+
+<script>
+  $(document).on('click', '.back-button', function() {
+    var $button = $(this);
+    if (!$button.hasClass('disabled')) {
+      $button.find('.fa-spinner').show();
+      $button.addClass('animate-back-button');
+      $.ajax({
+        url: '<%= app_posts_path %>',
+        type: 'GET',
+        dataType: 'script',
+        success: function(response) {   
+        },
+        error: function(xhr, textStatus, errorThrown) {
+        },
+        complete: function() {
+          setTimeout(function() {
+            $button.removeClass('animate-back-button');
+            $button.removeClass('disabled');
+            $button.find('.fa-spinner').hide();
+          }, 3000); 
+        }
+      });
+    }
   });
 </script>

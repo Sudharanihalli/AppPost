@@ -11,6 +11,7 @@ class AppPostsController < ApplicationController
     
     
     def show
+        @comments = @app_post.comments.includes(:replies)
         # @app_post = AppPost.find(params[:id])
         # rescue ActiveRecords::RecordNotFound
         # redirect_to root_path
@@ -53,9 +54,11 @@ def destroy
 end
 
 def comment
-    @app_post = AppPost.find(params[:id])    
+    @app_post = AppPost.find(params[:id]) 
+     @comments = @app_post.comments.includes(:replies)    
     respond_to do |format|
-      format.js
+    format.html
+    #   format.js
     end
 end
   
@@ -65,10 +68,11 @@ private
    def app_post_params
          params.require(:app_post).permit(:title, :content, :cover_image, :published_at)
     end
-end
+
 
 def set_app_post
     @app_post = user_signed_in? ? AppPost.find(params[:id]) : AppPost.published.find(params[:id])
 rescue ActiveRecord::RecordNotFound
     redirect_to root_path
+end
 end

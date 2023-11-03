@@ -41,12 +41,12 @@
   }
   
   .logout-button:hover {
-    background-color: gray; 
+    background-color: rgb(128, 128, 128); 
   }
   
   
   .edit-button {
-    background-color: gray;
+    background-color: rgb(134, 49, 49);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -67,10 +67,45 @@
   }
   
   .delete-button-container:hover {
-    background-color: #999;
+    background-color: #999999;
   }
   
+  /* app/assets/stylesheets/custom.css */
+
+.animate-edit-button {
+  /* Add your animation styles here */
+  /* For example, you can use CSS transitions for a smooth animation */
+  transform: scale(1.1); /* Increase size on click */
+  transition: transform 0.3s ease; /* Transition property and duration */
+}
+
+.animate-delete-button {
+  /* Add your animation styles here */
+  /* For example, you can use CSS transitions for a smooth animation */
+  transform: scale(1.1); /* Increase size on click */
+  transition: transform 0.3s ease; /* Transition property and duration */
+}
+
+.back-button {
+  background-color: rgb(124, 106, 71);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.animate-back-button {
+  /* Add your animation styles here */
+  /* For example, you can use CSS transitions for a smooth animation */
+  transform: scale(1.1); /* Increase size on click */
+  transition: transform 0.3s ease; /* Transition property and duration */
+}
   
-  
-  
+
   

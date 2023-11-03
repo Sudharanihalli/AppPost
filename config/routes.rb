@@ -2,14 +2,13 @@ Rails.application.routes.draw do
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # root "app_posts#index"
-
+ 
   devise_for :users 
   
   resources :app_posts do
     resource :cover_image, only: [:destroy], module: :app_posts
     member do
-      patch :comment
+      get :comment, only: [:create]
     end
   end
   # get "/app_posts", to: "app_posts#index", as: :app_posts
