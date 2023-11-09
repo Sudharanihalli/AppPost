@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :app_posts do
     resource :cover_image, only: [:destroy], module: :app_posts
     member do
-      get :comment, only: [:create]
+      patch :publish
     end
   end
   # get "/app_posts", to: "app_posts#index", as: :app_posts
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # get "/app_posts/:id/edit", to: "app_posts#edit", as: :edit_app_post
   # post "/app_posts",  to: "app_posts#create"
 
+  
   # Defines the root path route ("/")
   root "app_posts#index"
   end

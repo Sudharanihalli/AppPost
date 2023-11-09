@@ -11,7 +11,7 @@ class AppPostsController < ApplicationController
     
     
     def show
-        @comments = @app_post.comments.includes(:replies)
+        # @comments = @app_post.comments.includes(:replies)
         # @app_post = AppPost.find(params[:id])
         # rescue ActiveRecords::RecordNotFound
         # redirect_to root_path
@@ -53,15 +53,17 @@ def destroy
       end
 end
 
-def comment
-    @app_post = AppPost.find(params[:id]) 
-     @comments = @app_post.comments.includes(:replies)    
+def publish
+    @app_post = AppPost.find(params[:id])
+    if @app_post.update(published_at: Time.now)
     respond_to do |format|
-    format.html
-    #   format.js
+        format.js
+    end
+    else
+        render :edit, status: :unprocessable_entity
     end
 end
-  
+
 
 private
 

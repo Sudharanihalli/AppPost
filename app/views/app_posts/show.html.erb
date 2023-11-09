@@ -20,49 +20,24 @@
   <% end %>
   <h2><%= @app_post.title %></h2>
   <%= @app_post.content %>
+  
   <p>
     <strong>Published At:</strong>
-    <%= @app_post.published_at %>
+    <span id="published-at"><%= @app_post.published_at %></span>
   </p>
- 
+
+  <button id="publish-button" class="publish-button">
+  <strong> Publish</strong>
+  </button>
+
   <%= button_to  app_posts_path, method: :get, class: "back-button", remote: true do %>
   <span class="fas fa-spinner fa-spin" style="display: none;"></span>
-      Back
-    <% end %>
-
-    <%# <div id="comment">
-  <% @comments.where(parent_comment_id: nil).each do |comment| %>
-    <%# <%= render 'comments/comment', comment: comment %>
-  <%# <% end %> 
-<%# </div> %>
-
-<%# <%= render 'comments/form', comment: Comment.new, app_post: @app_post %> 
-
-<%# <button id="load-comment">Load Comment</button> %>
- 
+  <strong> Back </strong>
+  <% end %>
 
 </body>
 </html>
 
-<%# <script>
-  $(document).ready(function() {
-    $('#comment').click(function() {
-      $.ajax({
-        url: '<%= comment_app_post_path(@app_post) %>',
-        <%# type: 'PATCH',
-        dataType: 'script',
-        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-        success: function(response) {
-          alert("successful");
-          window.location.href = window.location.href;
-        },
-        error: function(xhr, textStatus, errorThrown) {
-          alert('Error updating Published At.');
-        }
-      });
-    });
-  });
-</script> %> 
 
 <script>
   $(document).on('click', '.edit-button', function() {
@@ -83,7 +58,7 @@
             $button.removeClass('animate-edit-button');
             $button.removeClass('disabled');
             $button.find('.fa-spinner').hide();
-          }, 3000); 
+          }, 1000); 
         }
       });
     }
@@ -109,9 +84,29 @@
             $button.removeClass('animate-back-button');
             $button.removeClass('disabled');
             $button.find('.fa-spinner').hide();
-          }, 3000); 
+          }, 500); 
         }
       });
     }
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('#publish-button').click(function () {
+      $.ajax({
+        type: 'patch', 
+        url: '<%= publish_app_post_path(@app_post) %>', 
+        data: {
+          app_post: { published_at: new Date().toISOString() }, 
+          authenticity_token: '<%= form_authenticity_token.to_s %>'
+        },
+        success: function (data) {
+          $('#published-at').text('Published At: ' + new Date().toLocaleString());
+          if (data.published) {
+         $('#publish-button').text('Published');          }
+        },
+      });
+    });
   });
 </script>
