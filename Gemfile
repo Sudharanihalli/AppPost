@@ -67,6 +67,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "rspec-rails"
+  gem "webmock"
 end
 
 gem "devise", "~> 4.9"
@@ -80,3 +81,8 @@ gem "font-awesome-rails"
 gem "jquery-rails"
 
 gem "resque"
+
+gem "stripe"
+
+gem "rest-client"
+

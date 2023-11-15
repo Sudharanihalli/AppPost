@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "can run tests" do
-    expect(false).to be(false)
-  end
+  it "enqueues the stripe customer create job on commit" do
+    expect {
+      create(:user)
+    }.to have_enqueued_job(CreateStripeCustomerJob)
+  end 
 end
