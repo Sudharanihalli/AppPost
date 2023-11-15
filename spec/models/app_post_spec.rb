@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AppPost, type: :model do
-  let(:draft_post) { create(:app_post, published_at: nil) } # assuming you have a factory for AppPost
+  let(:draft_post) { create(:app_post, published_at: nil) } 
   let(:published_post) { create(:app_post, published_at: Time.current - 1.hour) }
   let(:scheduled_post) { create(:app_post, published_at: Time.current + 1.hour) }
 
