@@ -16,7 +16,6 @@ private
 
 def process_response(response)
   mapping = response.body.split("\n").map { |pair| pair.split("\t") }
-
   mapping.each do |(ticker, cik)|
     TickerCik.find_or_create_by!(ticker: ticker, cik: cik)
     end 
