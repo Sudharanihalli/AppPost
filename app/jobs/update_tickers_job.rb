@@ -2,15 +2,23 @@ class UpdateTickersJob < ApplicationJob
  queue_as :default
 
  def perform
-    mapping = RestClient
-    .get("http://www.sec.gov/include/ticker.txt")
-    .body
-    .split("\n")
-    .map {|pair| pair.split("\t")}
+  begin
+    response = RestClient.get("http://www.sec.gov/include/ticker.txt")
+    process_response(response)
+  rescue RestClient::ExceptionWithResponse => e
+    Rails.logger.error("Error fetching data from external source: #{e.response}")
+  rescue StandardError => e
+    Rails.logger.error("Unexpected error: #{e.message}")
+  end
+end
 
-    bybug
-    mapping.each do |(ticker, cik)|
-        TickerCik.find_or_create_by!(ticker: ticker, cik: cik)
+private
+
+def process_response(response)
+  mapping = response.body.split("\n").map { |pair| pair.split("\t") }
+
+  mapping.each do |(ticker, cik)|
+    TickerCik.find_or_create_by!(ticker: ticker, cik: cik)
     end 
   end 
 end

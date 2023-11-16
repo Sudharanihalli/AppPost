@@ -25,6 +25,8 @@ module App
     # config.eager_load_paths << Rails.root.join("extras")
 config.autoload_paths << Rails.root.join("lib")
     config.active_job.queue_adaptor = :resque
+    config.autoload_paths += %W(#{config.root}/spec/models)
+    config.autoloader = :zeitwerk
 
     config.generators.system_tests = nil
     config.generators do |g|
