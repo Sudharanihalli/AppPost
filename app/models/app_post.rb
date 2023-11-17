@@ -1,4 +1,5 @@
 class AppPost < ApplicationRecord
+    attr_accessor :body
     has_many :comments
     has_one_attached :cover_image
     has_rich_text :content
