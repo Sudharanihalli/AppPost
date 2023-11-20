@@ -46,4 +46,16 @@ RSpec.describe AppPost, type: :model do
       expect(scheduled_post.schedule?).to be(true)
     end
   end
-end
+
+      describe 'published_at scope' do
+        it 'includes posts with a published_at value' do
+          post_with_published_at = create(:app_post, published_at: Time.current - 1.hour)
+          expect(AppPost.published).to include(post_with_published_at)
+        end
+    
+        it 'excludes posts without a published_at value' do
+          post_without_published_at = create(:app_post, published_at: nil)
+          expect(AppPost.published).not_to include(post_without_published_at)
+        end
+      end
+    end

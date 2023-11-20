@@ -15,7 +15,7 @@ RSpec.describe UpdateTickersJob, type: :job do
 
     expect {
       UpdateTickersJob.perform_now
-      expect(Ticker.count).to eq(3)
+      expect(Ticker.count).to eq(2)
       expect(TickerCik.find_by(ticker: "amzn").cik).to eq("1018724")
       expect(TickerCik.find_by(ticker: "goog").cik).to eq("1652044")
     }

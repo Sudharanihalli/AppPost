@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  attr_accessor :subscription_status
+ attr_accessor :subscription_status
   
   after_commit :create_stripe_customer, on: :create
 

@@ -10,10 +10,7 @@
   <body class="prose mx-auto">
 <h1>Edit App post</h1>
 <%= render partial: "form", locals: { app_post: @app_post } %>
-
-<%# <div class="delete-button-container" id="delete-button"> %>
 <%= button_to "Delete", app_post_path(@app_post), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this post?" }, class: "delete-button", id: "delete-post-button", remote: true %>
-<%# </div> %>
 <%= button_to  app_posts_path, method: :get, class: "back-button", remote: true do %>
   <span class="fas fa-spinner fa-spin" style="display: none;"></span>
       Back

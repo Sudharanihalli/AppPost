@@ -69,8 +69,12 @@ end
 describe 'fact' do
   it 'works for a simple base-case' do
     expect(fact(1)).to eq(1)
-  end  
+  end 
 
+  it 'works for edge case (n = 1)' do
+    expect(fact(1)).to eq(1)
+  end
+  
   it 'works for a more complex case' do
     expect(fact(4)).to eq(24)
     expect(fact(6)).to eq(720)
@@ -92,6 +96,20 @@ describe 'fib' do
       expect(fib(5)).to eq(3)
       expect(fib(7)).to eq(8)
       expect(fib(10)).to eq(34)
+    end 
+
+    it 'works for edge case (n = 1)' do
+      expect(fib(1)).to eq(0)
+    end
+
+    it 'works for edge case (n = 2)' do
+      expect(fib(2)).to eq(1)
+    end 
+
+    it 'works for a more complex case' do
+      expect(fib(6)).to eq(5)
+      expect(fib(9)).to eq(21)
+      expect(fib(12)).to eq(89)
     end 
   end
 end

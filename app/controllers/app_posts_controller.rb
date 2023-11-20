@@ -46,7 +46,6 @@ end
 def destroy
     # @app_post = AppPost.find(params[:id])
     @app_post.destroy
-    # redirect_to root_path
     respond_to do |format|
     format.html { redirect_to root_path }
         format.js
