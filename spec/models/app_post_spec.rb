@@ -49,7 +49,7 @@ RSpec.describe AppPost, type: :model do
 
       describe 'published_at scope' do
         it 'includes posts with a published_at value' do
-          post_with_published_at = create(:app_post, published_at: Time.current - 1.hour)
+          post_with_published_at = create(:app_post, published_at: Time.current)
           expect(AppPost.published).to include(post_with_published_at)
         end
     
